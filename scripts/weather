@@ -1,0 +1,59 @@
+#!/bin/sh
+
+# Ciudad/Ubicación a consultar (Jaén)
+LOCATION="Jaen"
+
+# Usar curl para obtener el JSON y jq para parsearlo
+# Se usa wttr.in/?format=j1 (o /Jaen?format=j1) para obtener JSON.
+WEATHER_DATA=$(curl -s "wttr.in/${LOCATION}?format=j1")
+
+# Verificar si la consulta fue exitosa
+if [ -z "$WEATHER_DATA" ]; then
+  echo '{"text": "Clima: Error", "tooltip": "No se pudo obtener el clima"}'
+  exit 1
+fi
+
+# 1. Extraer la temperatura en grados centígrados (temp_C)
+TEMP=$(echo "$WEATHER_DATA" | jq -r '.current_condition[0].temp_C')
+
+# 2. Extraer el código del tiempo (weatherCode)
+WEATHER_CODE=$(echo "$WEATHER_DATA" | jq -r '.current_condition[0].weatherCode')
+
+# Función para mapear el código del tiempo a un emoji
+fecha=$(date | cut -d" " -f5 | cut -d: -f1)
+
+if [ "$fecha" ] <"20" || [ "$fecha" ] >"7"; then
+  get_emoji() {
+    case "$1" in
+    113) echo "☀️" ;; # Despejado
+    116) echo "🌤️" ;; # Parcialmente nublado
+    119) echo "☁️" ;; # Nublado
+    122) echo "☁️" ;; # Muy nublado/cubierto
+    143 | 248 | 260 | 263 | 266 | 281 | 284 | 293 | 296 | 299 | 302 | 305 | 308 | 311 | 314 | 317 | 320 | 323 | 326 | 329 | 332 | 335 | 338 | 350 | 353 | 356 | 359 | 362 | 365 | 368 | 371 | 374 | 377 | 386 | 389 | 392 | 395)
+      echo "🌧️"
+      ;; # Lluvia, Nieve, Granizo, Tormenta, etc. (ajusta según necesites)
+      # Añade más códigos si quieres más precisión. Puedes consultar la documentación de wttr.in/json
+    *) echo "❓" ;; # Desconocido
+    esac
+  }
+else
+  get_emoji() {
+    case "$1" in
+    113) echo "🌙" ;;  # Despejado
+    116) echo "☁️" ;; # Parcialmente nublado
+    119) echo "☁️" ;; # Nublado
+    122) echo "☁️" ;; # Muy nublado/cubierto
+    143 | 248 | 260 | 263 | 266 | 281 | 284 | 293 | 296 | 299 | 302 | 305 | 308 | 311 | 314 | 317 | 320 | 323 | 326 | 329 | 332 | 335 | 338 | 350 | 353 | 356 | 359 | 362 | 365 | 368 | 371 | 374 | 377 | 386 | 389 | 392 | 395)
+      echo "🌧️"
+      ;; # Lluvia, Nieve, Granizo, Tormenta, etc. (ajusta según necesites)
+      # Añade más códigos si quieres más precisión. Puedes consultar la documentación de wttr.in/json
+    *) echo "❓" ;; # Desconocido
+    esac
+  }
+fi
+# Obtener el emoji
+EMOJI=$(get_emoji "$WEATHER_CODE")
+
+# Formatear la salida en JSON para Waybar
+# Waybar espera un JSON con "text" y opcionalmente "tooltip"
+echo "${EMOJI} ${TEMP}°C"
