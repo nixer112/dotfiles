@@ -1,59 +1,47 @@
 #!/bin/sh
 
-# Ciudad/Ubicación a consultar (Jaén)
+# Ciudad/Ubicación
 LOCATION="Jaen"
 
-# Usar curl para obtener el JSON y jq para parsearlo
-# Se usa wttr.in/?format=j1 (o /Jaen?format=j1) para obtener JSON.
-WEATHER_DATA=$(curl -s "wttr.in/${LOCATION}?format=j1")
+# Obtener datos (filtramos errores de red con --fail)
+WEATHER_DATA=$(curl -s --fail "wttr.in/${LOCATION}?format=j1")
 
-# Verificar si la consulta fue exitosa
-if [ -z "$WEATHER_DATA" ]; then
-  echo '{"text": "Clima: Error", "tooltip": "No se pudo obtener el clima"}'
+if [ $? -ne 0 ] || [ -z "$WEATHER_DATA" ]; then
+  echo '{"text": "Error", "tooltip": "No se pudo conectar con wttr.in"}'
   exit 1
 fi
 
-# 1. Extraer la temperatura en grados centígrados (temp_C)
+# 1. Extraer datos con jq
 TEMP=$(echo "$WEATHER_DATA" | jq -r '.current_condition[0].temp_C')
-
-# 2. Extraer el código del tiempo (weatherCode)
 WEATHER_CODE=$(echo "$WEATHER_DATA" | jq -r '.current_condition[0].weatherCode')
+HORA=$(date +%H)
 
-# Función para mapear el código del tiempo a un emoji
-fecha=$(date | cut -d" " -f5 | cut -d: -f1)
+# 2. Función de mapeo (Definida una sola vez)
+get_emoji() {
+  code=$1
+  hora=$2
 
-if [ "$fecha" ] <"20" || [ "$fecha" ] >"7"; then
-  get_emoji() {
-    case "$1" in
-    113) echo "☀️" ;; # Despejado
-    116) echo "🌤️" ;; # Parcialmente nublado
-    119) echo "☁️" ;; # Nublado
-    122) echo "☁️" ;; # Muy nublado/cubierto
-    143 | 248 | 260 | 263 | 266 | 281 | 284 | 293 | 296 | 299 | 302 | 305 | 308 | 311 | 314 | 317 | 320 | 323 | 326 | 329 | 332 | 335 | 338 | 350 | 353 | 356 | 359 | 362 | 365 | 368 | 371 | 374 | 377 | 386 | 389 | 392 | 395)
-      echo "🌧️"
-      ;; # Lluvia, Nieve, Granizo, Tormenta, etc. (ajusta según necesites)
-      # Añade más códigos si quieres más precisión. Puedes consultar la documentación de wttr.in/json
-    *) echo "❓" ;; # Desconocido
+  # Lógica de día: de 07:00 a 19:59
+  if [ "$hora" -ge 7 ] && [ "$hora" -lt 20 ]; then
+    case "$code" in
+    113) echo "☀️" ;;
+    116) echo "🌤️" ;;
+    119 | 122) echo "☁️" ;;
+    143 | 248 | 260 | 263 | 266 | 281 | 284 | 293 | 296 | 299 | 302 | 305 | 308 | 311 | 314 | 317 | 320 | 323 | 326 | 329 | 332 | 335 | 338 | 350 | 353 | 356 | 359 | 362 | 365 | 368 | 371 | 374 | 377 | 386 | 389 | 392 | 395) echo "🌧️" ;;
+    *) echo "❓" ;;
     esac
-  }
-else
-  get_emoji() {
-    case "$1" in
-    113) echo "🌙" ;;  # Despejado
-    116) echo "☁️" ;; # Parcialmente nublado
-    119) echo "☁️" ;; # Nublado
-    122) echo "☁️" ;; # Muy nublado/cubierto
-    143 | 248 | 260 | 263 | 266 | 281 | 284 | 293 | 296 | 299 | 302 | 305 | 308 | 311 | 314 | 317 | 320 | 323 | 326 | 329 | 332 | 335 | 338 | 350 | 353 | 356 | 359 | 362 | 365 | 368 | 371 | 374 | 377 | 386 | 389 | 392 | 395)
-      echo "🌧️"
-      ;; # Lluvia, Nieve, Granizo, Tormenta, etc. (ajusta según necesites)
-      # Añade más códigos si quieres más precisión. Puedes consultar la documentación de wttr.in/json
-    *) echo "❓" ;; # Desconocido
+  else
+    # Lógica de noche
+    case "$code" in
+    113) echo "🌙" ;;
+    116 | 119 | 122) echo "☁️" ;;
+    143 | 248 | 260 | 263 | 266 | 281 | 284 | 293 | 296 | 299 | 302 | 305 | 308 | 311 | 314 | 317 | 320 | 323 | 326 | 329 | 332 | 335 | 338 | 350 | 353 | 356 | 359 | 362 | 365 | 368 | 371 | 374 | 377 | 386 | 389 | 392 | 395) echo "🌧️" ;;
+    *) echo "❓" ;;
     esac
-  }
-fi
-# Obtener el emoji
-EMOJI=$(get_emoji "$WEATHER_CODE")
+  fi
+}
 
-# Formatear la salida en JSON para Waybar
-# Waybar espera un JSON con "text" y opcionalmente "tooltip"
+EMOJI=$(get_emoji "$WEATHER_CODE" "$HORA")
+
 echo "${EMOJI} ${TEMP}°C"
+

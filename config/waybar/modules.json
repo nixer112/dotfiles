@@ -24,7 +24,7 @@
     }
   },
   "pulseaudio": {
-    "format": "{icon}  {volume}%",
+    "format": "{icon} {volume}%",
     "format-bluetooth": "{icon}  {volume}%  {format_source}",
     "format-bluetooth-muted": "  {icon}  {format_source}",
     "format-muted": "󰋐 {format_source}",
@@ -46,9 +46,9 @@
     "on-click": "pavucontrol"
   },
   "network": {
-    "format-wifi": "   {essid} ({signalStrength}%)",
+    "format-wifi": " {essid}",
     "format-ethernet": "{ipaddr}/{cidr} ",
-    "tooltip-format": "{ifname} via {gwaddr} ",
+    "tooltip-format": "{ifname} via {gwaddr} ({signalStrength}%)",
     "format-linked": "{ifname} (No IP) ",
     "format-disconnected": "Disconnected ⚠",
     "on-click": "nm-connection-editor"
@@ -110,9 +110,9 @@
     "bat": "BAT2"
   },
   "clock": {
-    "format": "{:%H:%M | %e %b} ",
+    "format": "{:%H:%M}",
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-    "format-alt": "{:%Y-%m-%d}",
+    "format-alt": "{:%H:%M | %e %b} ",
     "timezone": "Europe/Madrid"
   },
   "custom/weather": {
