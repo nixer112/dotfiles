@@ -1,0 +1,14 @@
+layout {
+  tab name="estudio" {
+    pane split_direction="vertical" {
+      pane {
+        cwd "/home/nico"
+        command "pomodoro"
+      }
+      pane {
+        cwd "/home/nico"
+        command "peaclock"
+      }
+    }
+  }
+}

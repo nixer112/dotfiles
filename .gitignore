@@ -1,0 +1,11 @@
+cat <<EOF > .gitignore
+# Ignorar archivos del sistema y basura
+.DS_Store
+*.log
+.thumbnails/
+.cache/
+
+# Ignorar estados de edición
+*.swp
+undo/
+EOF

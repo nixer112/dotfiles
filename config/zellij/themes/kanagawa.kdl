@@ -1,0 +1,33 @@
+themes {
+ kanagawa-wave {
+        fg 220 215 186        /* oldWhite: Texto principal (DCD7BA) */
+        bg 31 31 40           /* base: Fondo principal (1F1F28) */
+        black 34 36 54        /* surface: Fondo de superficie (222436) */
+        red 232 36 36         /* red: Acento rojo (E82424) */
+        green 128 171 103     /* green: Verde (80AB67) */
+        yellow 239 188 123    /* yellow: Amarillo/Naranja (EFBC7B) */
+        blue 68 75 106        /* waveBlue2: Azul medio (444B6A) */
+        magenta 187 154 247   /* lavender: Magenta/Lavanda (BB9AF7) */
+        cyan 64 216 235       /* cyan: Cyan (40D8EB) */
+        white 192 202 245     /* mauve: Blanco/Malva (C0CAE8) */
+        orange 255 158 100    /* orange: Naranja (FF9E64) */
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

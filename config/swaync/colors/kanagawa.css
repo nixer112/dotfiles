@@ -1,0 +1,45 @@
+:root {
+  /* Fondo y Colores Base */
+  --sumi-ink-0: #16161dee;
+  --sumi-ink-3: #1f1f28ee;
+  --lotus-gray: #dcd7baee; /* Foreground */
+  --fuji-gray:  #727169ee;
+
+  /* Paleta de Colores (Cálidos/Otoño) */
+  --autumn-red:    #c34043ee;
+  --autumn-green:  #76946aee;
+  --boat-yellow-2: #c0a36eee;
+  --carp-yellow:   #e6c384ee;
+  --lotus-red-3:   #e82424ee;
+
+  /* Paleta de Colores (Fríos/Agua/Primavera) */
+  --crystal-blue:    #7e9cd8ee;
+  --spring-blue:     #7fb4caee;
+  --wave-blue-2:     #2d4f67ee; /* Selection Background */
+  --oni-violet:      #957fb8ee;
+  --spring-violet-1: #938aa9ee;
+  --wave-aqua-1:     #6a9589ee;
+  --wave-aqua-2:     #7aa89fee;
+  --spring-green:    #98bb6cee;
+  --old-white:       #c8c093ee;
+}
+
+/* Colores Base Kanagawa */
+@define-color background    #1f1f28;
+@define-color foreground    #dcd7ba;
+@define-color color0        #16161d;
+@define-color color1        #c34043;
+@define-color color2        #76946a;
+@define-color color3        #c0a36e;
+@define-color color4        #7e9cd8;
+@define-color color5        #957fb8;
+@define-color color6        #6a9589;
+@define-color color7        #c8c093;
+@define-color color8        #727169;
+@define-color color9        #e82424;
+@define-color color10       #98bb6c;
+@define-color color11       #e6c384;
+@define-color color12       #7fb4ca;
+@define-color color13       #938aa9;
+@define-color color14       #7aa89f;
+@define-color color15       #dcd7ba;
