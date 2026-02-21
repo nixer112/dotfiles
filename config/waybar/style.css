@@ -9,7 +9,7 @@
 
 window#waybar {
     /* Fondo principal: sumiInk0 con 90% de opacidad para ser muy oscuro */
-    background: rgba(22, 22, 29, 0.9); /* $sumiInk0 */
+    background: transparent; /*rgba(22, 22, 29, 0.9);*/ /*$sumiInk0 */
     /* Color del texto principal: oldWhite */
     color: #c8c093; /* $oldWhite */
     font-family: 
@@ -23,7 +23,7 @@ window#waybar {
 .modules-right
 {
     /* Fondo de los contenedores de módulos: sumiInk3 con 70% de opacidad */
-    background: rgba(31, 31, 40, .7); /* $sumiInk3 */
+    background: rgba(22, 22, 29, 1);/* rgba(31, 31, 40, .7); */ /* $sumiInk3 */
     margin: 5px 5px;
     padding: 0 6px;
     border-radius: 15px;
