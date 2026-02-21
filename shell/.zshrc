@@ -62,3 +62,6 @@ unset __conda_setup
 
 # 6. Carga de configuración de P10k (Mantener siempre al final)
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# opencode
+export PATH=/home/nico/.opencode/bin:$PATH
