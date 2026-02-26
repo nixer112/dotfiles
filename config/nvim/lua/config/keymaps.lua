@@ -19,6 +19,10 @@ vim.api.nvim_set_keymap("x", "<A-k>", "<Nop>", { noremap = true, silent = true }
 vim.api.nvim_set_keymap("x", "J", "<Nop>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("x", "K", "<Nop>", { noremap = true, silent = true })
 
+vim.keymap.set("n", "<leader>tf", function()
+  Snacks.terminal.open()
+end, { desc = "Terminal Flotante" })
+
 -- 1. IMPORTAR TU MÓDULO PERSONALIZADO
 -- 'require("custom.cmake_runner")' busca el archivo en:
 -- 'lua/custom/cmake_runner.lua-- ~/.config/nvim/lua/config/keymaps.lua

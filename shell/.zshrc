@@ -13,12 +13,16 @@ export PATH="$HOME/.local/bin:$PATH"
 
 # Java / Android
 export JAVA_HOME=/usr/lib/jvm/default
-export ANDROID_HOME=$HOME/Android/Sdk
-export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 
+export ANDROID_HOME=$HOME/Android/Sdk
+# Añadir herramientas al PATH
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
 # Flutter
 export PATH=$PATH:$HOME/development/flutter/bin
-export PATH="/home/nico/miniconda/bin:$PATH"
+# export PATH="/home/nico/miniconda/bin:$PATH"  # commented out by conda initialize
 
 # Conda (esto suele añadirlo el instalador automáticamente, 
 # pero asegúrate de que esté en tu .zshrc del repo)
@@ -47,14 +51,15 @@ alias ls='eza --icons --group-directories-first' # Si tienes 'exa' o 'eza' insta
 alias cat='bat --paging=never'
 
 # >>> conda initialize >>>
-__conda_setup="$('/home/nico/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/nico/miniconda/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/home/nico/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/nico/miniconda3/etc/profile.d/conda.sh"
+    if [ -f "/home/nico/miniconda/etc/profile.d/conda.sh" ]; then
+        . "/home/nico/miniconda/etc/profile.d/conda.sh"
     else
-        export PATH="/home/nico/miniconda3/bin:$PATH"
+        export PATH="/home/nico/miniconda/bin:$PATH"
     fi
 fi
 unset __conda_setup

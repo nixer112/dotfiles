@@ -2,7 +2,8 @@ theme = "/home/nico/.config/ghostty/themes/kanagawa-wave"
 
 cursor-opacity = 1
 
-background-opacity = 0.9
+background-opacity = 0.95
+background-blur = true
 window-padding-x = 2
 
 font-family = CaskaydiaCove NFM
