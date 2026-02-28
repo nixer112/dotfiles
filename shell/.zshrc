@@ -1,4 +1,7 @@
-fastfetch
+if [[ -t 1 && -z "$FASTFETCH_DONE" ]]; then
+  export FASTFETCH_DONE=1
+  fastfetch
+fi
 
 # 1. P10k Instant Prompt (Mantener siempre arriba)
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
@@ -43,27 +46,19 @@ source $ZSH/oh-my-zsh.sh
 
 # 4. Inicialización de herramientas (Zoxide, Atuin, etc.)
 eval "$(zoxide init zsh)"
-eval "$(atuin init zsh)" # Descomenta si usas atuin
+[[ $- == *i* ]] && eval "$(atuin init zsh)"
 
 # 5. Tus Aliases Personales (Añadí algunos para gestionar tus dotfiles)
 alias dots='cd ~/dotfiles'
 alias ls='eza --icons --group-directories-first' # Si tienes 'exa' o 'eza' instalado
 alias cat='bat --paging=never'
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/nico/miniconda/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/nico/miniconda/etc/profile.d/conda.sh" ]; then
-        . "/home/nico/miniconda/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/nico/miniconda/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
+# Lazy load conda (rápido)
+conda() {
+  unset -f conda
+  source /home/nico/miniconda/etc/profile.d/conda.sh
+  conda "$@"
+}
 
 # 6. Carga de configuración de P10k (Mantener siempre al final)
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
