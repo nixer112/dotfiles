@@ -52,7 +52,8 @@ eval "$(zoxide init zsh)"
 alias dots='cd ~/dotfiles'
 alias ls='eza --icons --group-directories-first' # Si tienes 'exa' o 'eza' instalado
 alias cat='bat --paging=never'
-
+alias phpmyadmin='sudo systemctl start mariadb httpd && xdg-open http://localhost/phpmyadmin && echo "Servicios activos y navegador abierto."'
+alias oc='opencode'
 # Lazy load conda (rápido)
 conda() {
   unset -f conda
