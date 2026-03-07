@@ -1,18 +1,21 @@
+@import "./colors/colors.css";
+
 * {
     /* `otf-font-awesome` and SpaceMono Nerd Font are required to be installed for icons */
     font-family: "CaskaydiaCove NFM", FontAwesome, Roboto, Helvetica, Arial, sans-serif;
     font-size: 15px;
     transition: background-color .3s ease-out;
-    /* Usamos oldWhite para el texto por defecto, aunque Waybar lo sobrescribirá */
-    color: #c8c093; /* $oldWhite */
+
+    color: @fg; 
 }
 
 window#waybar {
-    /* Fondo principal: sumiInk0 con 90% de opacidad para ser muy oscuro */
-    background: transparent; /*rgba(22, 22, 29, 0.9);*/ /*$sumiInk0 */
-    /* Color del texto principal: oldWhite */
-    color: #c8c093; /* $oldWhite */
+
+    background: transparent;
+
+    color: @fg;
     font-family: 
+        CaskaydiaCove NFM,
         SpaceMono Nerd Font,
         feather;
     transition: background-color .5s;
@@ -23,7 +26,7 @@ window#waybar {
 .modules-right
 {
     /* Fondo de los contenedores de módulos: sumiInk3 con 70% de opacidad */
-    background: rgba(22, 22, 29, 1);/* rgba(31, 31, 40, .7); */ /* $sumiInk3 */
+    background: @bg0;/* rgba(31, 31, 40, .7); */ /* $sumiInk3 */
     margin: 5px 5px;
     padding: 0 6px;
     border-radius: 15px;
@@ -62,7 +65,7 @@ window#waybar {
     padding: 0 5px;
     border-radius: 15px;
     /* Color de texto para el estado normal */
-    color: #c8c093; /* $oldWhite */
+    color: @fg; /* $oldWhite */
 }
 
 #clock:hover,
@@ -85,35 +88,37 @@ window#waybar {
 #language:hover,
 #mpd:hover {
     /* Fondo de módulo al pasar el ratón: sumiInk3, ligeramente más claro que el principal */
-    background: rgba(31, 31, 40, 0.9); /* $sumiInk3 */
+    background: @bg3;
 }
 
 
 #workspaces button {
     background: transparent;
     font-family:
+        CaskaydiaCove NFM,
         SpaceMono Nerd Font,
         feather;
     font-weight: 900;
     font-size: 13pt;
-    /* Color de botones inactivos: oldWhite */
-    color: #c8c093; /* $oldWhite */
+
+    color: @fg;
     border:none;
     border-radius: 15px;
 }
 
 #workspaces button.active {
-    /* Fondo del botón activo: fujiGray */
-    background: #727169; /* $fujiGray */
-    /* Color del texto activo: sumiInk0 para un buen contraste */
-    color: #16161d; /* $sumiInk0 */ 
+    /* Fondo del botón activo:*/
+    background: @bg3;
+
+    color: @fg; 
 }
 
 #workspaces button:hover {
-    /* Fondo del botón al pasar el ratón: sumiInk0 */
-    background: #16161d; /* $sumiInk0 */
+    /* Fondo del botón al pasar el ratón*/
+    background: @bg3;
+
     /* Color del texto al pasar el ratón: springBlue */
-    color: #7fb4ca; /* $springBlue */
+    color: @blue; /* $springBlue */
     box-shadow: none;
 }
 
@@ -121,23 +126,23 @@ window#waybar {
     margin-left: 5px;
     padding: 0 10px;
     font-size: 25px;
-    /* Color normal del icono: boatYellow2 */
-    color: #c0a36e; /* $boatYellow2 */
+    /* Color normal del icono*/
+    color: @yellow;
     transition: color .5s;
 }
 #custom-arch:hover {
-    /* Color del icono al pasar el ratón: springBlue */
-    color: #7fb4ca; /* $springBlue */
+    /* Color del icono al pasar el ratón*/
+    color: @blue;
 }
 
 /* Opcional: Estilos para indicar estados de alerta o peligro */
 #battery.critical {
     /* Rojo de alerta para batería baja */
-    color: #e82424; /* $lotusRed3 */
+    color: @red;
 }
 #custom-weather {
   padding: 0 10px;
-  color: #c8c093; /* $oldWhite */
-  background: rgba(31, 31, 40, .7); /* $sumiInk3 */
+  color: @fg;
+  background: @bg0;  
   border-radius: 5px;
 }

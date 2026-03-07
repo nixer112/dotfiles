@@ -2,7 +2,7 @@
   "custom/arch": {
     "format": "",
     "tooltip": true,
-    "tooltip-format": "btw",
+    "tooltip-format": "I use Arch btw",
     "on-click": "wlogout"
   },
   "hyprland/workspaces": {
