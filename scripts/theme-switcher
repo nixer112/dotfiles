@@ -8,23 +8,53 @@ THEME=$1
 
 # Verificar que se ha introducido un tema
 if [ -z "$THEME" ]; then
-    echo "❌ Error: No has especificado ningún tema."
-    echo "💡 Uso: set-theme <kanagawa|gruvbox|catppuccin>"
-    exit 1
+  echo "❌ Error: No has especificado ningún tema."
+  echo "💡 Uso: set-theme <kanagawa|gruvbox|catppuccin>"
+  exit 1
 fi
 
 echo "🎨 Aplicando el tema: $THEME..."
 
 # --- 1. WAYBAR & WOFI (CSS) ---
 # Usamos rutas absolutas para que GTK3 no se pierda nunca
-echo "@import url(\"$HOME/.config/wofi/colors/custom/$THEME.css\");" > "$HOME/.config/wofi/colors/colors.css"
-echo "@import url(\"$HOME/.config/waybar/colors/custom/$THEME.css\");" > "$HOME/.config/waybar/colors/colors.css"
+echo "@import url(\"$HOME/.config/wofi/colors/custom/$THEME.css\");" >"$HOME/.config/wofi/colors/colors.css"
+echo "@import url(\"$HOME/.config/waybar/colors/custom/$THEME.css\");" >"$HOME/.config/waybar/colors/colors.css"
 
 # --- 2. HYPRLAND (CONF) ---
-echo "source = ~/.config/hypr/colors/custom/$THEME.conf" > "$HOME/.config/hypr/colors/colors.conf"
+echo "source = ~/.config/hypr/colors/custom/$THEME.conf" >"$HOME/.config/hypr/colors/colors.conf"
 
 # --- 3. GHOSTTY (INI) ---
-echo "config-file = custom/$THEME" > "$HOME/.config/ghostty/colors/colors"
+echo "config-file = custom/$THEME" >"$HOME/.config/ghostty/colors/colors"
+
+# --- MAPEO DE TEMAS PARA VSCODIUM ---
+# Aquí traducimos nuestro nombre corto al nombre exacto de la extensión
+case $THEME in
+kanagawa)
+  VSCODIUM_THEME="Kanagawa Wave"
+  ;;
+gruvbox)
+  VSCODIUM_THEME="Gruvbox Dark Hard" # Asegúrate de que este es el que usas
+  ;;
+catppuccin)
+  VSCODIUM_THEME="Catppuccin Mocha"
+  ;;
+*)
+  echo "❌ Error: Tema no reconocido."
+  exit 1
+  ;;
+esac
+
+# --- 4. VSCODIUM (JSON) ---
+# Usa sed para buscar la línea "workbench.colorTheme" y reemplazar su valor
+VSCODIUM_SETTINGS="$HOME/.config/VSCodium/User/settings.json"
+
+if [ -f "$VSCODIUM_SETTINGS" ]; then
+  # Usamos una expresión regular para cambiar solo lo que hay entre las comillas
+  sed -i -E "s/\"workbench.colorTheme\": \".*\"/\"workbench.colorTheme\": \"$VSCODIUM_THEME\"/g" "$VSCODIUM_SETTINGS"
+  echo "⚙️  Tema de VSCodium actualizado a $VSCODIUM_THEME"
+else
+  echo "⚠️  No se encontró settings.json de VSCodium. Saltando..."
+fi
 
 # ==========================================
 # APLICAR CAMBIOS Y RECARGAR SERVICIOS
@@ -32,13 +62,13 @@ echo "config-file = custom/$THEME" > "$HOME/.config/ghostty/colors/colors"
 echo "🔄 Recargando el entorno..."
 
 # 1. Recargar los bordes de Hyprland
-hyprctl reload &> /dev/null
+hyprctl reload &>/dev/null
 
 # 2. Reiniciar Waybar en segundo plano sin ensuciar la terminal
-killall waybar &> /dev/null
-waybar &> /dev/null & disown
+killall waybar &>/dev/null
+waybar &>/dev/null &
+disown
 
 # 3. Forzar el Hot-Reload de Ghostty
 # Ghostty recarga si tocamos su archivo de config principal
-touch "$HOME/.config/ghostty/config"
-
+killall -SIGUSR2 ghostty

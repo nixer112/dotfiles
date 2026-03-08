@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Definimos la lista de temas disponibles
+TEMAS="kanagawa\ngruvbox\ncatppuccin"
+
+# Lanzamos Wofi y guardamos la elección del usuario en una variable
+ELECCION=$(echo -e "$TEMAS" | wofi --dmenu --prompt "🎨 Elige un tema:" --width 250 --height 350)
+
+# Si el usuario eligió algo (es decir, no pulsó Escape), ejecutamos set-theme
+if [ -n "$ELECCION" ]; then
+  ~/.local/bin/theme-switcher "$ELECCION"
+fi
