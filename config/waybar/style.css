@@ -127,7 +127,7 @@ window#waybar {
     padding: 0 10px;
     font-size: 25px;
     /* Color normal del icono*/
-    color: @yellow;
+    color: @fg;
     transition: color .5s;
 }
 #custom-arch:hover {

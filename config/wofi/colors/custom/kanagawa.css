@@ -1,0 +1,29 @@
+/**************************************************************
+** Tema: Kanagawa                                           **
+** Descripción: Paleta de colores cálida y suave (Sumi Ink) **
+**************************************************************/
+
+/* Backgrounds (Tonos Sumi Ink) */
+@define-color bg0 #16161D; /* sumiInk0 (Más oscuro) */
+@define-color bg1 #1F1F28; /* sumiInk1 (Fondo principal) */
+@define-color bg2 #2A2A37; /* sumiInk2 */
+@define-color bg3 #363646; /* sumiInk3 */
+@define-color bg4 #54546D; /* sumiInk4 */
+
+/* Foreground (Texto principal) */
+@define-color fg  #DCD7BA; /* fujiWhite */
+
+/* Colores Principales */
+@define-color red    #C34043; /* samuraiRed */
+@define-color orange #FFA066; /* surimiOrange */
+@define-color yellow #E6C384; /* springYellow */
+@define-color green  #98BB6C; /* autumnGreen */
+@define-color aqua   #7AA89F; /* waveAqua1 */
+@define-color blue   #7E9CD8; /* crystalBlue */
+@define-color purple #957FB8; /* oniViolet */
+@define-color pink   #D27E99; /* sakuraPink */
+
+/* Grises (Para bordes, comentarios o fondos inactivos) */
+@define-color grey0 #727169; /* fujiGray */
+@define-color grey1 #717C7C; /* katanaGray */
+@define-color grey2 #536161; /* masonryGray */
