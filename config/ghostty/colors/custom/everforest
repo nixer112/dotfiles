@@ -1,0 +1,28 @@
+# Tema: Everforest Dark para Ghostty
+
+# --- Colores normales (0-7) ---
+palette = 0=#3D484D
+palette = 1=#E67E80
+palette = 2=#A7C080
+palette = 3=#DBBC7F
+palette = 4=#7FBBB3
+palette = 5=#D699B6
+palette = 6=#83C092
+palette = 7=#D3C6AA
+
+# --- Colores brillantes (8-15) ---
+palette = 8=#475258
+palette = 9=#E67E80
+palette = 10=#A7C080
+palette = 11=#DBBC7F
+palette = 12=#7FBBB3
+palette = 13=#D699B6
+palette = 14=#83C092
+palette = 15=#E4D5B7
+
+# --- Configuración base ---
+background = 232A2E
+foreground = D3C6AA
+cursor-color = A7C080
+selection-background = 475258
+selection-foreground = D3C6AA

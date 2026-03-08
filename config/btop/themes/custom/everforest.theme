@@ -1,0 +1,66 @@
+# Theme: everforest-dark-hard
+# By: sainnhe (original) / Nico (adaptation)
+
+# Main bg
+theme[main_bg]="#272e33"
+
+# Main text color
+theme[main_fg]="#d3c6aa"
+
+# Title color for boxes (Everforest Amber/Yellow)
+theme[title]="#dbbc7f"
+
+# Highlight color for keyboard shortcuts (Everforest Green)
+theme[hi_fg]="#a7c080"
+
+# Background color of selected item in processes box
+theme[selected_bg]="#374145"
+
+# Foreground color of selected item in processes box
+theme[selected_fg]="#d3c6aa"
+
+# Color of inactive/disabled text
+theme[inactive_fg]="#5c6a72"
+
+# Misc colors for processes box (Everforest Aqua)
+theme[proc_misc]="#7fbbb3"
+
+# Box outlines
+theme[cpu_box]="#475258"
+theme[mem_box]="#475258"
+theme[net_box]="#475258"
+theme[proc_box]="#475258"
+theme[div_line]="#475258"
+
+# Temperature/CPU/Mem graphs (Green -> Yellow -> Red)
+theme[temp_start]="#a7c080"
+theme[temp_mid]="#dbbc7f"
+theme[temp_end]="#e67e80"
+
+theme[cpu_start]="#a7c080"
+theme[cpu_mid]="#dbbc7f"
+theme[cpu_end]="#e67e80"
+
+theme[free_start]="#a7c080"
+theme[free_mid]="#dbbc7f"
+theme[free_end]="#e67e80"
+
+theme[cached_start]="#a7c080"
+theme[cached_mid]="#dbbc7f"
+theme[cached_end]="#e67e80"
+
+theme[available_start]="#a7c080"
+theme[available_mid]="#dbbc7f"
+theme[available_end]="#e67e80"
+
+theme[used_start]="#a7c080"
+theme[used_mid]="#dbbc7f"
+theme[used_end]="#e67e80"
+
+theme[download_start]="#7fbbb3"
+theme[download_mid]="#d699b6"
+theme[download_end]="#e67e80"
+
+theme[upload_start]="#7fbbb3"
+theme[upload_mid]="#d699b6"
+theme[upload_end]="#e67e80"

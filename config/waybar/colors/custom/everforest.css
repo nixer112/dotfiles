@@ -1,0 +1,29 @@
+/**************************************************************
+** Tema: Everforest (Dark)                                  **
+** Descripción: Paleta natural, cálida y relajante          **
+**************************************************************/
+
+/* Backgrounds (Tonos oscuros) */
+@define-color bg0 #232A2E; /* darkest background */
+@define-color bg1 #2D353B; /* main background */
+@define-color bg2 #343F44; /* surface0 */
+@define-color bg3 #3D484D; /* surface1 */
+@define-color bg4 #475258; /* surface2 */
+
+/* Foreground (Texto principal) */
+@define-color fg  #D3C6AA; /* text */
+
+/* Colores Principales */
+@define-color red    #E67E80; /* red */
+@define-color orange #E69875; /* orange */
+@define-color yellow #DBBC7F; /* yellow */
+@define-color green  #A7C080; /* green */
+@define-color aqua   #83C092; /* aqua */
+@define-color blue   #7FBBB3; /* blue */
+@define-color purple #D699B6; /* purple */
+@define-color pink   #E698B4; /* pink */
+
+/* Grises (Para bordes, comentarios o fondos inactivos) */
+@define-color grey0 #859289; /* grey2 */
+@define-color grey1 #7A8478; /* grey1 */
+@define-color grey2 #6F7A6F; /* grey0 */

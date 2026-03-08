@@ -1,0 +1,81 @@
+# Theme: catppuccin_mocha
+# By: Catppuccin Team / Nico (adaptation)
+
+# Main bg (Mocha Base)
+theme[main_bg]="#1E1E2E"
+
+# Main text color (Text)
+theme[main_fg]="#CDD6F4"
+
+# Title color for boxes (Mauve)
+theme[title]="#CBA6F7"
+
+# Highlight color for keyboard shortcuts (Peach)
+theme[hi_fg]="#FAB387"
+
+# Background color of selected item in processes box (Surface 0)
+theme[selected_bg]="#313244"
+
+# Foreground color of selected item in processes box (Text)
+theme[selected_fg]="#CDD6F4"
+
+# Color of inactive/disabled text (Overlay 0)
+theme[inactive_fg]="#6C7086"
+
+# Misc colors for processes box (Sky)
+theme[proc_misc]="#89DCEB"
+
+# Cpu box outline color (Overlay 0)
+theme[cpu_box]="#6C7086"
+
+# Memory/disks box outline color
+theme[mem_box]="#6C7086"
+
+# Net up/down box outline color
+theme[net_box]="#6C7086"
+
+# Processes box outline color
+theme[proc_box]="#6C7086"
+
+# Box divider line and small boxes line color
+theme[div_line]="#6C7086"
+
+# Temperature graph colors (Green -> Yellow -> Red)
+theme[temp_start]="#A6E3A1"
+theme[temp_mid]="#F9E2AF"
+theme[temp_end]="#F38BA8"
+
+# CPU graph colors
+theme[cpu_start]="#A6E3A1"
+theme[cpu_mid]="#F9E2AF"
+theme[cpu_end]="#F38BA8"
+
+# Mem/Disk free meter
+theme[free_start]="#A6E3A1"
+theme[free_mid]="#F9E2AF"
+theme[free_end]="#F38BA8"
+
+# Mem/Disk cached meter
+theme[cached_start]="#A6E3A1"
+theme[cached_mid]="#F9E2AF"
+theme[cached_end]="#F38BA8"
+
+# Mem/Disk available meter
+theme[available_start]="#A6E3A1"
+theme[available_mid]="#F9E2AF"
+theme[available_end]="#F38BA8"
+
+# Mem/Disk used meter
+theme[used_start]="#A6E3A1"
+theme[used_mid]="#F9E2AF"
+theme[used_end]="#F38BA8"
+
+# Download graph colors
+theme[download_start]="#A6E3A1"
+theme[download_mid]="#F9E2AF"
+theme[download_end]="#F38BA8"
+
+# Upload graph colors
+theme[upload_start]="#A6E3A1"
+theme[upload_mid]="#F9E2AF"
+theme[upload_end]="#F38BA8"

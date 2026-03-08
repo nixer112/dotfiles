@@ -1,50 +1,46 @@
+@import "colors/colors.css";
+
 * {
-	background-image: none;
-	box-shadow: none;
+    background-image: none;
+    box-shadow: none;
 }
 
 window {
-	background-color: rgba(1, 1, 1, 0);
+    background-color: rgba(0, 0, 0, 0.6); /* Un fondo oscuro semitransparente para que destaque */
 }
 
 button {
-    border-radius: 0;
-    border-color: black;
-	text-decoration-color: #223249;
-    color: #FFFFFF;
-	background-color: #1F1F28;
-	border-style: solid;
-	border-width: 1px;
-	background-repeat: no-repeat;
-	background-position: center;
-	background-size: 25%;
+    border-radius: 20px; /* Bordes redondeados estilo tarjeta */
+    border: 2px solid @border;
+    
+    /* Tipografía */
+    font-family: "CaskaydiaCove NFM", "monospace";
+    font-size: 5rem;
+    color: @text;
+    background-color: @background-alt;
+    
+    /* Separación entre botones */
+    margin: 20px;
+    
+    /* Transición suave */
+    transition: all 0.2s ease-in-out;
 }
 
 button:focus, button:active, button:hover {
-	background-color: #3700B3;
-	outline-style: none;
+    background-color: @hover;
+    border-color: @selected;
+    color: @selected;
+    outline-style: none;
+    /* Efecto de iluminarse un poco al pasar el ratón */
+    box-shadow: 0 0 10px 2px alpha(@selected, 0.3);
 }
 
-#lock {
-    background-image: image(url("/usr/share/wlogout/icons/lock.png"), url("/usr/local/share/wlogout/icons/lock.png"));
-}
-
-#logout {
-    background-image: image(url("/usr/share/wlogout/icons/logout.png"), url("/usr/local/share/wlogout/icons/logout.png"));
-}
-
-#suspend {
-    background-image: image(url("/usr/share/wlogout/icons/suspend.png"), url("/usr/local/share/wlogout/icons/suspend.png"));
-}
-
-#hibernate {
-    background-image: image(url("/usr/share/wlogout/icons/hibernate.png"), url("/usr/local/share/wlogout/icons/hibernate.png"));
-}
-
+/* El botón de apagar en rojo */
 #shutdown {
-    background-image: image(url("/usr/share/wlogout/icons/shutdown.png"), url("/usr/local/share/wlogout/icons/shutdown.png"));
+    color: @urgent;
 }
 
-#reboot {
-    background-image: image(url("/usr/share/wlogout/icons/reboot.png"), url("/usr/local/share/wlogout/icons/reboot.png"));
+#shutdown:hover {
+    background-color: @urgent;
+    color: @background;
 }

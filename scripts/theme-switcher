@@ -44,6 +44,11 @@ catppuccin)
   NVIM_THEME="catppuccin"
   NOTIFY_ICON="☕"
   ;;
+everforest)
+  VSCODIUM_THEME="Everforest Night Hard"
+  NVIM_THEME="everforest"
+  NOTIFY_ICON="🌲"
+  ;;
 *)
   echo "❌ Error: Tema no reconocido."
   exit 1
@@ -70,14 +75,18 @@ echo "return '$NVIM_THEME'" >"$HOME/.config/nvim/lua/theme_bridge.lua"
 # Vinculamos el CSS del color elegido al archivo que lee SwayNC
 echo "@import \"custom/$THEME.css\";" >"$HOME/.config/swaync/colors/colors.css"
 
+# --- 7. WLOGOUT ---
+# Vinculamos el CSS del color elegido al archivo que lee SwayNC
+echo "@import \"custom/$THEME.css\";" >"$HOME/.config/wlogout/colors/colors.css"
+
+# --- 10. BTOP ---
+ln -sf "$HOME/.config/btop/themes/custom/$THEME.theme" "$HOME/.config/btop/themes/colors.theme"
+
+# --- 10. CAVA ---
+ln -sf "$HOME/.config/cava/themes/custom/$THEME" "$HOME/.config/cava/themes/colors"
+
 # Le pedimos a SwayNC que recargue su CSS en vivo (rs = reload style)
 swaync-client -rs
-echo "🔔 SwayNC actualizado a $THEME"
-
-# ==========================================
-# APLICAR CAMBIOS Y RECARGAR SERVICIOS
-# ==========================================
-echo "🔄 Recargando el entorno..."
 
 # 1. Recargar los bordes de Hyprland
 hyprctl reload &>/dev/null
@@ -97,35 +106,35 @@ WALLPAPER_DIR="$HOME/.config/hypr/wallpapers"
 AVAILABLE_WALLPAPERS=$(find "$WALLPAPER_DIR" -maxdepth 1 -type f -iname "${THEME}*" | sort)
 
 if [ -n "$AVAILABLE_WALLPAPERS" ]; then
-    # Contamos cuántos fondos se han encontrado
-    COUNT=$(echo "$AVAILABLE_WALLPAPERS" | wc -l)
+  # Contamos cuántos fondos se han encontrado
+  COUNT=$(echo "$AVAILABLE_WALLPAPERS" | wc -l)
 
-    if [ "$COUNT" -eq 1 ]; then
-        # Si solo hay 1, lo elegimos directamente
-        SELECTED_WALLPAPER="$AVAILABLE_WALLPAPERS"
+  if [ "$COUNT" -eq 1 ]; then
+    # Si solo hay 1, lo elegimos directamente
+    SELECTED_WALLPAPER="$AVAILABLE_WALLPAPERS"
+  else
+    # Si hay varios, sacamos solo el nombre del archivo para dmenu
+    BASENAMES=$(echo "$AVAILABLE_WALLPAPERS" | xargs -n 1 basename)
+
+    # Lanzamos Wofi para que elijas
+    CHOICE=$(echo "$BASENAMES" | wofi --dmenu --prompt "🖼️ Elige fondo para $THEME:")
+
+    if [ -n "$CHOICE" ]; then
+      SELECTED_WALLPAPER="$WALLPAPER_DIR/$CHOICE"
     else
-        # Si hay varios, sacamos solo el nombre del archivo para dmenu
-        BASENAMES=$(echo "$AVAILABLE_WALLPAPERS" | xargs -n 1 basename)
-        
-        # Lanzamos Wofi para que elijas
-        CHOICE=$(echo "$BASENAMES" | wofi --dmenu --prompt "🖼️ Elige fondo para $THEME:")
-        
-        if [ -n "$CHOICE" ]; then
-            SELECTED_WALLPAPER="$WALLPAPER_DIR/$CHOICE"
-        else
-            # Si se cierra Wofi sin elegir, coge el primero por defecto
-            SELECTED_WALLPAPER=$(echo "$AVAILABLE_WALLPAPERS" | head -n 1)
-        fi
+      # Si se cierra Wofi sin elegir, coge el primero por defecto
+      SELECTED_WALLPAPER=$(echo "$AVAILABLE_WALLPAPERS" | head -n 1)
     fi
+  fi
 
-    # Aplicamos el fondo con Hyprpaper
-    hyprctl hyprpaper preload "$SELECTED_WALLPAPER" > /dev/null
-    hyprctl hyprpaper wallpaper ",$SELECTED_WALLPAPER" > /dev/null
-    hyprctl hyprpaper unload all > /dev/null
+  # Aplicamos el fondo con Hyprpaper
+  hyprctl hyprpaper preload "$SELECTED_WALLPAPER" >/dev/null
+  hyprctl hyprpaper wallpaper ",$SELECTED_WALLPAPER" >/dev/null
+  hyprctl hyprpaper unload all >/dev/null
 
-    echo "🖼️ Fondo de pantalla actualizado: $SELECTED_WALLPAPER"
+  echo "🖼️ Fondo de pantalla actualizado: $SELECTED_WALLPAPER"
 else
-    echo "⚠️ No se encontraron fondos para el tema $THEME en $WALLPAPER_DIR"
+  echo "⚠️ No se encontraron fondos para el tema $THEME en $WALLPAPER_DIR"
 fi
 
 # --- 8. NOTIFICACIÓN FINAL ---
