@@ -9,10 +9,9 @@
 /* Window */
 window {
   margin: 0px;
-  padding: 10px;
-  border: 2px solid @fg;
-  border-radius: 15px;
-  background-color: @bg1;
+  padding: 0px;
+  border: none;
+  background-color: transparent;
 }
 
 /* Inner Box */
@@ -27,7 +26,8 @@ window {
 #outer-box {
   margin: 5px;
   padding: 10px;
-  border: none;
+  border: 2px solid @fg;
+  border-radius: 15px;
   background-color: @bg1;
 }
 
