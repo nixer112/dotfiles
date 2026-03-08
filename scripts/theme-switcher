@@ -31,12 +31,18 @@ echo "config-file = custom/$THEME" >"$HOME/.config/ghostty/colors/colors"
 case $THEME in
 kanagawa)
   VSCODIUM_THEME="Kanagawa Wave"
+  NVIM_THEME="kanagawa"
+  NOTIFY_ICON="🌊"
   ;;
 gruvbox)
   VSCODIUM_THEME="Gruvbox Dark Hard" # Asegúrate de que este es el que usas
+  NVIM_THEME="gruvbox"
+  NOTIFY_ICON="📦"
   ;;
 catppuccin)
   VSCODIUM_THEME="Catppuccin Mocha"
+  NVIM_THEME="catppuccin"
+  NOTIFY_ICON="☕"
   ;;
 *)
   echo "❌ Error: Tema no reconocido."
@@ -56,6 +62,18 @@ else
   echo "⚠️  No se encontró settings.json de VSCodium. Saltando..."
 fi
 
+# --- 5. NEOVIM (LUA PARA LAZYVIM) ---
+mkdir -p "$HOME/.config/nvim/lua"
+echo "return '$NVIM_THEME'" >"$HOME/.config/nvim/lua/theme_bridge.lua"
+
+
+# --- 6. SWAYNC ---
+# Vinculamos el CSS del color elegido al archivo que lee SwayNC
+echo "@import \"custom/$THEME.css\";" >"$HOME/.config/swaync/colors/colors.css"
+
+# Le pedimos a SwayNC que recargue su CSS en vivo (rs = reload style)
+swaync-client -rs
+echo "🔔 SwayNC actualizado a $THEME"
 # ==========================================
 # APLICAR CAMBIOS Y RECARGAR SERVICIOS
 # ==========================================
@@ -72,3 +90,5 @@ disown
 # 3. Forzar el Hot-Reload de Ghostty
 # Ghostty recarga si tocamos su archivo de config principal
 killall -SIGUSR2 ghostty
+
+notify-send "$NOTIFY_ICON Tema aplicado" "El entorno ahora usa $THEME" -t 2000 -a "Theme Switcher"

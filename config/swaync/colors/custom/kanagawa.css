@@ -1,0 +1,9 @@
+/* Kanagawa Wave - Versión Refinada para GTK */
+@define-color background #16161D;     /* sumiInk0: Fondo principal más oscuro y contrastado */
+@define-color background-alt #1F1F28; /* sumiInk1: Fondo de las notificaciones */
+@define-color background-sec #2A2A37; /* sumiInk3: Reproductor de música o áreas secundarias */
+@define-color text #DCD7BA;           /* fujiWhite: Texto principal cálido */
+@define-color selected #957FB8;       /* oniViolet: Acento violeta (cambia a #7E9CD8 si prefieres azul) */
+@define-color hover #363646;          /* sumiInk4: Color al pasar el ratón */
+@define-color urgent #C34043;         /* autumnRed: Rojo suave para críticas/DND */
+@define-color border #223249;         /* waveBlue1: Borde sutil y oscuro */
