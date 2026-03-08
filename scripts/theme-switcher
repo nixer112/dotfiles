@@ -26,8 +26,8 @@ echo "source = ~/.config/hypr/colors/custom/$THEME.conf" >"$HOME/.config/hypr/co
 # --- 3. GHOSTTY (INI) ---
 echo "config-file = custom/$THEME" >"$HOME/.config/ghostty/colors/colors"
 
-# --- MAPEO DE TEMAS PARA VSCODIUM ---
-# Aquí traducimos nuestro nombre corto al nombre exacto de la extensión
+# --- MAPEO DE TEMAS ---
+# Aquí traducimos nuestro nombre corto al nombre exacto de las extensiones
 case $THEME in
 kanagawa)
   VSCODIUM_THEME="Kanagawa Wave"
@@ -35,7 +35,7 @@ kanagawa)
   NOTIFY_ICON="🌊"
   ;;
 gruvbox)
-  VSCODIUM_THEME="Gruvbox Dark Hard" # Asegúrate de que este es el que usas
+  VSCODIUM_THEME="Gruvbox Dark Hard"
   NVIM_THEME="gruvbox"
   NOTIFY_ICON="📦"
   ;;
@@ -66,7 +66,6 @@ fi
 mkdir -p "$HOME/.config/nvim/lua"
 echo "return '$NVIM_THEME'" >"$HOME/.config/nvim/lua/theme_bridge.lua"
 
-
 # --- 6. SWAYNC ---
 # Vinculamos el CSS del color elegido al archivo que lee SwayNC
 echo "@import \"custom/$THEME.css\";" >"$HOME/.config/swaync/colors/colors.css"
@@ -74,6 +73,7 @@ echo "@import \"custom/$THEME.css\";" >"$HOME/.config/swaync/colors/colors.css"
 # Le pedimos a SwayNC que recargue su CSS en vivo (rs = reload style)
 swaync-client -rs
 echo "🔔 SwayNC actualizado a $THEME"
+
 # ==========================================
 # APLICAR CAMBIOS Y RECARGAR SERVICIOS
 # ==========================================
@@ -88,7 +88,45 @@ waybar &>/dev/null &
 disown
 
 # 3. Forzar el Hot-Reload de Ghostty
-# Ghostty recarga si tocamos su archivo de config principal
 killall -SIGUSR2 ghostty
 
+# --- 7. HYPRPAPER (FONDO DINÁMICO CON WOFI) ---
+WALLPAPER_DIR="$HOME/.config/hypr/wallpapers"
+
+# Buscamos todos los fondos que empiecen por el nombre del tema (ej. catppuccin*)
+AVAILABLE_WALLPAPERS=$(find "$WALLPAPER_DIR" -maxdepth 1 -type f -iname "${THEME}*" | sort)
+
+if [ -n "$AVAILABLE_WALLPAPERS" ]; then
+    # Contamos cuántos fondos se han encontrado
+    COUNT=$(echo "$AVAILABLE_WALLPAPERS" | wc -l)
+
+    if [ "$COUNT" -eq 1 ]; then
+        # Si solo hay 1, lo elegimos directamente
+        SELECTED_WALLPAPER="$AVAILABLE_WALLPAPERS"
+    else
+        # Si hay varios, sacamos solo el nombre del archivo para dmenu
+        BASENAMES=$(echo "$AVAILABLE_WALLPAPERS" | xargs -n 1 basename)
+        
+        # Lanzamos Wofi para que elijas
+        CHOICE=$(echo "$BASENAMES" | wofi --dmenu --prompt "🖼️ Elige fondo para $THEME:")
+        
+        if [ -n "$CHOICE" ]; then
+            SELECTED_WALLPAPER="$WALLPAPER_DIR/$CHOICE"
+        else
+            # Si se cierra Wofi sin elegir, coge el primero por defecto
+            SELECTED_WALLPAPER=$(echo "$AVAILABLE_WALLPAPERS" | head -n 1)
+        fi
+    fi
+
+    # Aplicamos el fondo con Hyprpaper
+    hyprctl hyprpaper preload "$SELECTED_WALLPAPER" > /dev/null
+    hyprctl hyprpaper wallpaper ",$SELECTED_WALLPAPER" > /dev/null
+    hyprctl hyprpaper unload all > /dev/null
+
+    echo "🖼️ Fondo de pantalla actualizado: $SELECTED_WALLPAPER"
+else
+    echo "⚠️ No se encontraron fondos para el tema $THEME en $WALLPAPER_DIR"
+fi
+
+# --- 8. NOTIFICACIÓN FINAL ---
 notify-send "$NOTIFY_ICON Tema aplicado" "El entorno ahora usa $THEME" -t 2000 -a "Theme Switcher"
