@@ -1,4 +1,4 @@
-theme = "/home/nico/dotfiles/config/ghostty/colors/colors"
+config-file = "colors/colors"
 
 cursor-opacity = 1
 

@@ -1,0 +1,29 @@
+/**************************************************************
+** Tema: Gruvbox                                            **
+** Descripción: Paleta retro con contraste cálido           **
+**************************************************************/
+
+/* Backgrounds (Tonos oscuros) */
+@define-color bg0 #282828; /* bg_dim (Más oscuro) */
+@define-color bg1 #3C3836; /* bg1 (Fondo principal) */
+@define-color bg2 #504945; /* bg2 */
+@define-color bg3 #665C54; /* bg3 */
+@define-color bg4 #7C6F64; /* bg4 */
+
+/* Foreground (Texto principal) */
+@define-color fg  #EBDBB2; /* fg principal */
+
+/* Colores Principales */
+@define-color red    #CC241D; /* red */
+@define-color orange #D65D0E; /* orange */
+@define-color yellow #D79921; /* yellow */
+@define-color green  #98971A; /* green */
+@define-color aqua   #689D6A; /* aqua */
+@define-color blue   #458588; /* blue */
+@define-color purple #B16286; /* purple */
+@define-color pink   #D3869B; /* bright purple (usado como rosa en Gruvbox) */
+
+/* Grises (Para bordes, comentarios o fondos inactivos) */
+@define-color grey0 #A89984; /* gray claro */
+@define-color grey1 #928374; /* gray medio */
+@define-color grey2 #7C6F64; /* gray oscuro */

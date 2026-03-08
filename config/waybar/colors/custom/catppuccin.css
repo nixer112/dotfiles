@@ -1,0 +1,29 @@
+/**************************************************************
+** Tema: Catppuccin (Mocha)                                 **
+** Descripción: Paleta pastel, suave y moderna              **
+**************************************************************/
+
+/* Backgrounds (Tonos oscuros) */
+@define-color bg0 #11111B; /* crust (Más oscuro) */
+@define-color bg1 #1E1E2E; /* base (Fondo principal) */
+@define-color bg2 #313244; /* surface0 */
+@define-color bg3 #45475A; /* surface1 */
+@define-color bg4 #585B70; /* surface2 */
+
+/* Foreground (Texto principal) */
+@define-color fg  #CDD6F4; /* text */
+
+/* Colores Principales */
+@define-color red    #F38BA8; /* red */
+@define-color orange #FAB387; /* peach */
+@define-color yellow #F9E2AF; /* yellow */
+@define-color green  #A6E3A1; /* green */
+@define-color aqua   #94E2D5; /* teal */
+@define-color blue   #89B4FA; /* blue */
+@define-color purple #CBA6F7; /* mauve */
+@define-color pink   #F5C2E7; /* pink */
+
+/* Grises (Para bordes, comentarios o fondos inactivos) */
+@define-color grey0 #9399B2; /* overlay2 */
+@define-color grey1 #7F849C; /* overlay1 */
+@define-color grey2 #6C7086; /* overlay0 */
