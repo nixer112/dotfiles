@@ -4,11 +4,11 @@
 **************************************************************/
 
 /* Backgrounds (Tonos oscuros) */
-@define-color bg0 #232A2E; /* darkest background */
-@define-color bg1 #2D353B; /* main background */
-@define-color bg2 #343F44; /* surface0 */
-@define-color bg3 #3D484D; /* surface1 */
-@define-color bg4 #475258; /* surface2 */
+@define-color bg0 #1E2326; /* el fondo más oscuro */
+@define-color bg1 #272E33; /* fondo principal */
+@define-color bg2 #2E383C; /* superficie 0 */
+@define-color bg3 #374145; /* superficie 1 */
+@define-color bg4 #414B50; /* superficie 2 */
 
 /* Foreground (Texto principal) */
 @define-color fg  #D3C6AA; /* text */

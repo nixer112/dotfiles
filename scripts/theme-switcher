@@ -88,6 +88,10 @@ ln -sf "$HOME/.config/cava/themes/custom/$THEME" "$HOME/.config/cava/themes/colo
 # Le pedimos a SwayNC que recargue su CSS en vivo (rs = reload style)
 swaync-client -rs
 
+# Brave
+ln -sf "$HOME/.config/BraveSoftware/Brave-Browser/colors/custom/$THEME/Cached Theme.pak" "$HOME/.config/BraveSoftware/Brave-Browser/colors/Cached Theme.pak"
+ln -sf "$HOME/.config/BraveSoftware/Brave-Browser/colors/custom/$THEME/manifest.json" "$HOME/.config/BraveSoftware/Brave-Browser/colors/manifest.json"
+
 # 1. Recargar los bordes de Hyprland
 hyprctl reload &>/dev/null
 
