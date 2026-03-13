@@ -9,9 +9,9 @@
 /* Window */
 window {
   margin: 0px;
-  padding: 0px;
   border: none;
   background-color: transparent;
+  box-shadow: none;
 }
 
 /* Inner Box */
