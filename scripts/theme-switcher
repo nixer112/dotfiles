@@ -139,6 +139,7 @@ if [ -n "$AVAILABLE_WALLPAPERS" ]; then
   # Aplicamos el fondo con Hyprpaper
   hyprctl hyprpaper preload "$SELECTED_WALLPAPER" >/dev/null
   hyprctl hyprpaper wallpaper ",$SELECTED_WALLPAPER" >/dev/null
+  echo "\$wallpaper=/home/nico/.config/hypr/wallpapers/$CHOICE" >"$HOME/.config/hypr/wallpaper.conf"
   hyprctl hyprpaper unload all >/dev/null
 
   echo "🖼️ Fondo de pantalla actualizado: $SELECTED_WALLPAPER"

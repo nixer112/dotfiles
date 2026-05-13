@@ -1,0 +1,30 @@
+layout {
+    // Definimos una pestaña principal
+    pane size=1 borderless=true {
+        plugin location="zellij:tab-bar"
+    }
+
+    // Dividimos la pantalla en dos paneles verticales
+    pane split_direction="vertical" {
+        
+        // Panel para el Frontend
+        pane name="Frontend (Next/React)" {
+            cwd "~/Documents/Uni/web/equipo11/petsitters"
+            command "zsh"
+            args "-c" "npm run dev"
+        }
+
+        // Panel para el Backend
+    pane name="Backend (FastAPI)" {
+        cwd "~/Documents/Uni/web/equipo11/fastapi"
+        command "zsh"
+        args "-c" "eval \"$(~/miniconda/bin/conda shell.zsh hook)\" && conda activate web && fastapi dev main.py"
+    }
+
+    }
+
+    // Barra de estado inferior
+    pane size=2 borderless=true {
+        plugin location="zellij:status-bar"
+    }
+}

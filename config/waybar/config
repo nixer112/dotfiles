@@ -11,8 +11,8 @@
   ],
   "modules-center": [
     //"hyprland/window"
-    "clock",
-    "custom/weather"
+    "clock"
+    //"custom/weather"
   ],
   "modules-right": [
     //    "idle_inhibitor",

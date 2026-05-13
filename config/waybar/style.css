@@ -44,7 +44,9 @@ window#waybar {
     padding: 0 10px;
 }
 
-#clock,
+#clock {
+  color: @purple;
+}
 #battery,
 #cpu,
 #memory,
@@ -137,6 +139,16 @@ window#waybar {
 }
 
 /* Opcional: Estilos para indicar estados de alerta o peligro */
+#battery{
+    /* Rojo de alerta para batería baja */
+    color: @green;
+}
+
+#battery.warning {
+    /* Naranja de alerta para batería media */
+    color: @orange;
+}
+
 #battery.critical {
     /* Rojo de alerta para batería baja */
     color: @red;
